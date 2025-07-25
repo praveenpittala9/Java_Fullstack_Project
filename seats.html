@@ -1,0 +1,84 @@
+<!-- seats.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Select Seats</title>
+  <style>
+     button {
+    background-color: rgb(250, 110, 97);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: darkblue;
+  }
+    body { font-family: sans-serif;
+       text-align: center; 
+       padding: 40px;
+       background: url('img6.jpg');
+        background-size: cover;
+     }
+    
+    .seats { display: grid; grid-template-columns: repeat(4, 50px); gap: 15px; justify-content: center; margin: 30px 0; }
+    .seat {
+      width: 50px; height: 50px;
+      border-radius: 5px;
+      background-color: lightgray;
+      line-height: 50px;
+      cursor: pointer;
+    }
+    .seat.selected { background-color: #4caf50; color: white; }
+    .seat.booked { background-color: #d32f2f; color: white; pointer-events: none; }
+  </style>
+</head>
+<body>
+  <h1>Select Your Seat</h1>
+  <div class="seats" id="seatContainer"></div>
+  <p id="selectionInfo"></p>
+  <button onclick="proceedToPassengerDetails()">Continue</button>
+
+  <script>
+    const totalSeats = 50;
+    const bookedSeats = [5, 8, 12]; // Simulated already booked
+
+    const container = document.getElementById('seatContainer');
+    const selectionInfo = document.getElementById('selectionInfo');
+    let selectedSeats = [];
+
+    for (let i = 1; i <= totalSeats; i++) {
+      const seat = document.createElement('div');
+      seat.className = 'seat';
+      seat.innerText = i;
+      if (bookedSeats.includes(i)) seat.classList.add('booked');
+
+      seat.addEventListener('click', () => {
+        if (seat.classList.contains('selected')) {
+          seat.classList.remove('selected');
+          selectedSeats = selectedSeats.filter(s => s !== i);
+        } else {
+          seat.classList.add('selected');
+          selectedSeats.push(i);
+        }
+        selectionInfo.textContent = `Selected Seats: ${selectedSeats.join(', ')}`;
+      });
+
+      container.appendChild(seat);
+    }
+
+    function proceedToPassengerDetails() {
+      if (selectedSeats.length === 0) {
+        alert("Please select at least one seat.");
+        return;
+      }
+      alert(`Proceeding with seats: ${selectedSeats.join(', ')}`);
+      // Normally you'd store this in a session or pass to the next page
+      window.location.href = "passengerinfo.html";
+    }
+  </script>
+  
+</body>
+</html>

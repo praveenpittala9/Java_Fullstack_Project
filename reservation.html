@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Reservation - Bus Ticket Booking</title>
+  <link rel="stylesheet" href="style8.css" />
+</head>
+<body>
+
+<header>
+  <h1>Reserve Your Bus Ticket</h1>
+</header>
+
+<nav>
+  <a href="home.html">Home</a>
+  <a href="about.html">About Us</a>
+  <a href="reservation.html" class="active">Reservation</a>
+  <a href="payment1.html">Payment</a>
+  <a href="contact.html">Contact Us</a>
+</nav>
+
+<div class="container">
+  <h2>Step 1: Select Your Trip</h2>
+  <form id="tripForm">
+    <label for="origin">Origin:</label>
+    <input type="text" id="origin" name="origin" placeholder="Starting City" required />
+
+    <label for="destination">Destination:</label>
+    <input type="text" id="destination" name="destination" placeholder="Destination City" required />
+
+    <label for="travelDate">Travel Date:</label>
+    <input type="date" id="travelDate" name="travelDate" required />
+
+    <label for="passengers">Passengers:</label>
+    <input type="number" id="passengers" name="passengers" min="1" max="10" value="1" required />
+
+    <button type="submit">Search Buses</button>
+  </form>
+
+  <div id="busOptions" style="display:none; margin-top:30px;">
+    <h2>Step 2: Choose a Bus</h2>
+    <div class="bus-card">
+      <input type="radio" id="bus1" name="busOption" value="Express Bus - 9:00 AM" required />
+      <label for="bus1">
+        <strong>Express Bus</strong> - Departure: 9:00 AM - Duration: 4h - Fare: 699
+      </label>
+    </div>
+    <div class="bus-card">
+      <input type="radio" id="bus2" name="busOption" value="Comfort Bus - 1:00 PM" />
+      <label for="bus2">
+        <strong>Comfort Bus</strong> - Departure: 1:00 PM - Duration: 4.5h - Fare: 1299
+      </label>
+    </div>
+    <div class="bus-card">
+      <input type="radio" id="bus3" name="busOption" value="Night Bus - 10:00 PM" />
+      <label for="bus3">
+        <strong>Night Bus</strong> - Departure: 10:00 PM - Duration: 5h - Fare: 4599
+      </label>
+    </div>
+    <div class="bus-card">
+  <input type="radio" id="bus4" name="busOption" value="Rapid Bus - 6:30 AM" />
+  <label for="bus4">
+    <strong>Rapid Bus</strong> - Departure: 6:30 AM - Duration: 3.5h - Fare: 599
+  </label>
+</div>
+
+<div class="bus-card">
+  <input type="radio" id="bus5" name="busOption" value="CityLink - 8:15 AM" />
+  <label for="bus5">
+    <strong>CityLink</strong> - Departure: 8:15 AM - Duration: 5h - Fare: 749
+  </label>
+</div>
+
+<div class="bus-card">
+  <input type="radio" id="bus6" name="busOption" value="TravelGo - 12:00 PM" />
+  <label for="bus6">
+    <strong>TravelGo</strong> - Departure: 12:00 PM - Duration: 4h - Fare: 899
+  </label>
+</div>
+
+<div class="bus-card">
+  <input type="radio" id="bus7" name="busOption" value="MetroRide - 3:00 PM" />
+  <label for="bus7">
+    <strong>MetroRide</strong> - Departure: 3:00 PM - Duration: 3h - Fare: 799
+  </label>
+</div>
+
+<div class="bus-card">
+  <input type="radio" id="bus8" name="busOption" value="NightLine - 11:30 PM" />
+  <label for="bus8">
+    <strong>NightLine</strong> - Departure: 11:30 PM - Duration: 6h - Fare: 999
+  </label>
+</div>
+
+<div class="bus-card">
+  <input type="radio" id="bus9" name="busOption" value="Green Bus - 5:45 AM" />
+  <label for="bus9">
+    <strong>Green Bus</strong> - Departure: 5:45 AM - Duration: 3h 15m - Fare: 549
+  </label>
+</div>
+
+<div class="bus-card">
+  <input type="radio" id="bus10" name="busOption" value="Royal Cruiser - 2:20 PM" />
+  <label for="bus10">
+    <strong>Royal Cruiser</strong> - Departure: 2:20 PM - Duration: 4h 30m - Fare: 1399
+  </label>
+</div>
+
+<div class="bus-card">
+  <input type="radio" id="bus11" name="busOption" value="SkyHigh Travels - 9:50 AM" />
+  <label for="bus11">
+    <strong>SkyHigh Travels</strong> - Departure: 9:50 AM - Duration: 5h 10m - Fare: 1150
+  </label>
+</div>
+
+<div class="bus-card">
+  <input type="radio" id="bus12" name="busOption" value="Budget Express - 7:10 AM" />
+  <label for="bus12">
+    <strong>Budget Express</strong> - Departure: 7:10 AM - Duration: 3h 45m - Fare: 499
+  </label>
+</div>
+
+<div class="bus-card">
+  <input type="radio" id="bus13" name="busOption" value="LuxuryLine - 10:30 PM" />
+  <label for="bus13">
+    <strong>LuxuryLine</strong> - Departure: 10:30 PM - Duration: 6h - Fare: 1899
+  </label>
+</div>
+
+
+    <button id="proceedPayment" style="margin-top:20px;">Proceed to Payment</button>
+  
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 Bus Reservation Booking. All rights reserved.
+</footer>
+
+<script>
+  const form = document.getElementById('tripForm');
+  const busOptions = document.getElementById('busOptions');
+  const proceedBtn = document.getElementById('proceedPayment');
+
+  // Show available buses on form submit
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    busOptions.style.display = 'block';
+    window.scrollTo({ top: busOptions.offsetTop, behavior: 'smooth' });
+  });
+
+  // Save reservation to backend and proceed to payment
+  proceedBtn.addEventListener('click', () => {
+    const selectedBus = document.querySelector('input[name="busOption"]:checked');
+    if (!selectedBus) {
+      alert('Please select a bus option.');
+      return;
+    }
+
+    const reservationData = {
+      origin: form.origin.value,
+      destination: form.destination.value,
+      travelDate: form.travelDate.value,
+      passengers: parseInt(form.passengers.value),
+      selectedBus: selectedBus.value
+    };
+
+    fetch("http://localhost:8084/reservations", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(reservationData)
+    })
+    .then(response => {
+      if (!response.ok) throw new Error("Failed to save reservation");
+      return response.text(); // or .json() depending on your backend
+    })
+    .then(msg => {
+      alert("Reservation Saved: " + msg);
+      // Redirect to payment page
+      window.location.href = "payment1.html";
+    })
+    .catch(error => {
+      alert("Error: " + error.message);
+    });
+  });
+</script>
+
+<style>
+  .bus-card {
+    background-color: #f0f4ff;
+    border: 1px solid #004a99;
+    border-radius: 8px;
+    padding: 12px 20px;
+    margin-bottom: 15px;
+    cursor: pointer;
+  }
+
+  .bus-card:hover {
+    background-color: #d0e1ff;
+  }
+
+  .bus-card input {
+    margin-right: 12px;
+  }
+</style>
+
+</body>
+</html>

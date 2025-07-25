@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bus Reservation - Sign Up</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body, html {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .slideshow {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      top: 0;
+      left: 0;
+    }
+
+    .slideshow img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      animation: slide 20s infinite;
+      opacity: 0;
+    }
+
+    .slideshow img:nth-child(1) { animation-delay: 0s; }
+    .slideshow img:nth-child(2) { animation-delay: 5s; }
+    .slideshow img:nth-child(3) { animation-delay: 10s; }
+    .slideshow img:nth-child(4) { animation-delay: 15s; }
+
+    @keyframes slide {
+      0% { opacity: 0; }
+      5% { opacity: 1; }
+      25% { opacity: 1; }
+      30% { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(19, 60, 136, 0.4);
+      backdrop-filter: blur(8px);
+      color: white;
+      padding: 15px 30px;
+      font-size: 22px;
+      font-weight: 600;
+      z-index: 10;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .container {
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(99, 144, 222, 0.1);
+      backdrop-filter: blur(15px);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      width: 320px;
+      text-align: center;
+      color: rgb(239, 245, 255);
+    }
+
+    .container h2 {
+      margin-bottom: 20px;
+    }
+
+    .container input[type="text"],
+    .container input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 10px;
+      outline: none;
+    }
+
+    .container a {
+      color: #ddd;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .remember {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      font-size: 14px;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+
+    .remember input {
+      margin-right: 8px;
+    }
+
+    .container button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      margin-top: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .login {
+      background: #00bcd4;
+      color: white;
+    }
+
+    .social-icons {
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .social-icons a {
+      font-size: 24px;
+      color: white;
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 12px;
+      border-radius: 50%;
+      transition: 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      background-color: rgba(20, 70, 170, 0.5);
+      transform: scale(1.1);
+    }
+
+    .fa-google { color: #EA4335; }
+    .fa-facebook-f { color: #3b5998; }
+    .fa-twitter { color: #1DA1F2; }
+
+    .signup-link {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .signup-link a {
+      color: #00bcd4;
+      text-decoration: none;
+      font-weight: 600;
+    }
+     /* Profile Camera Icon */
+    .image-upload {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .image-upload label {
+      width: 80px;
+      height: 80px;
+      background-color: rgba(62, 102, 162, 0.3);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .image-upload label:hover {
+      background-color: rgba(98, 166, 249, 0.5);
+    }
+
+    .image-upload i {
+      font-size: 28px;
+      color: #fff;
+    }
+
+    .image-upload input[type="file"] {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Slideshow Background -->
+  <div class="slideshow">
+    <img src="slide1.jpg" alt="Slide 1">
+    <img src="slide2.jpg" alt="Slide 2">
+    <img src="slide3.jpg" alt="Slide 3">
+    <img src="slide4.jpg" alt="Slide 4">
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav>
+            <div class="logo">:) SAFE DRIVE</div>
+            <ul>
+                <li><a href="About.html">About Us</a></li>
+                <li><a href="login.html">Login</a></li>  
+                <li><a href="#">Services</a></li> 
+                <li><a href="Contact.html">Contact</a></li>
+                <li><a href="busticket.html">Ticket Booking</a></li> 
+             </ul>
+                <div class="register">
+                    <a href="registration.html">Register</a>
+                </div>
+        </nav>
+
+  <!-- Sign Up Form -->
+  <div class="container">
+    <!-- Profile Upload Icon -->
+    <div class="image-upload">
+      <label for="uploadIcon">
+        <i class="fas fa-camera"></i>
+        <input type="file" id="uploadIcon" accept="image/*">
+      </label>
+    </div>
+    <h2>Sign Up</h2>
+    <form>
+      <input type="text" placeholder="Username" name="username" required>
+      <input type="password" placeholder="Password" name="password" required>
+
+      <!-- Remember Me -->
+      <div class="remember">
+        <input type="checkbox" id="rememberMe">
+        <label for="rememberMe">Remember Me</label>
+      </div>
+
+      <a href="#">Forgot Password?</a>
+
+      <button class="login" type="submit">Log In</button>
+    </form>
+
+    <!-- Social Icons -->
+    <div class="social-icons">
+      <a href="#" title="Login with Google"><i class="fab fa-google"></i></a>
+      <a href="#" title="Login with Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" title="Login with Twitter"><i class="fab fa-twitter"></i></a>
+    </div>
+
+    <!-- Sign Up Link -->
+    <div class="signup-link">
+      Don’t have an account? <a href="registration.html">Sign In</a>
+    </div>
+  </div>
+
+</body>
+</html>

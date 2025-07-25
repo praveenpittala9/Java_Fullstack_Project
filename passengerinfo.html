@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Passenger Details</title>
+  <style>
+    body { font-family: sans-serif;
+       padding: 40px;
+        text-align: center; 
+       background: url('passengerimg.jpg');
+        background-size: cover;}
+        button {
+    background-color: rgb(250, 110, 97);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+    input, select, button { padding: 10px; margin: 10px; width: 250px; }
+    form { display: inline-block; text-align: left; border: 1px solid #ccc; padding: 20px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>Enter Passenger Details</h1>
+  <form id="passengerForm">
+    <label>Name:</label><br>
+    <input type="text" id="name" required><br>
+
+    <label>Gender:</label><br>
+    <select id="gender" required>
+      <option value="">-- Select --</option>
+      <option>Male</option>
+      <option>Female</option>
+      <option>Other</option>
+    </select><br>
+
+    <label>Age:</label><br>
+    <input type="number" id="age" required><br>
+
+    <label>Mobile Number:</label><br>
+    <input type="tel" id="mobile" required><br>
+
+    <button type="submit">Proceed to Payment</button>
+  </form>
+
+  <script>
+    document.getElementById('passengerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const gender = document.getElementById('gender').value;
+      const age = document.getElementById('age').value;
+      const mobile = document.getElementById('mobile').value;
+
+      // Normally you'd send this to the backend or save in session
+      alert(Hello ${name}! You'll now be redirected to payment.);
+      window.location.href = "payment.html"; // Placeholder
+    });
+  </script>
+</body>
+</html>

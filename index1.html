@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Online Bus Booking</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    label, input, button { display: block; margin: 10px 0; }
+    .bus { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+
+  <h1>Search Buses</h1>
+  <label>Origin: <input type="text" id="origin" /></label>
+  <label>Destination: <input type="text" id="destination" /></label>
+  <button onclick="searchBuses()">Search</button>
+
+  <div id="results"></div>
+
+  <hr>
+
+  <h2>Book Reservation</h2>
+  <label>Passenger Name: <input type="text" id="passengerName" /></label>
+  <label>Seat Number: <input type="text" id="seatNumber" /></label>
+  <label>Travel Date: <input type="date" id="travelDate" /></label>
+  <label>Bus ID: <input type="text" id="busId" /></label>
+  <button onclick="bookTicket()">Book Ticket</button>
+
+  <script>
+    const API_BASE = 'http://localhost:8084/api';
+
+    function searchBuses() {
+      const origin = document.getElementById('origin').value;
+      const destination = document.getElementById('destination').value;
+      
+      fetch(${API_BASE}/buses?origin=${origin}&destination=${destination})
+        .then(res => res.json())
+        .then(data => {
+          const resultsDiv = document.getElementById('results');
+          resultsDiv.innerHTML = "<h3>Available Buses:</h3>";
+          data.forEach(bus => {
+            resultsDiv.innerHTML += `
+              <div class="bus">
+                <strong>${bus.busName}</strong><br/>
+                From: ${bus.origin} - To: ${bus.destination}<br/>
+                Bus ID: ${bus.id}
+              </div>`;
+          });
+        });
+    }
+
+    function bookTicket() {
+      const reservation = {
+        passengerName: document.getElementById('passengerName').value,
+        seatNumber: document.getElementById('seatNumber').value,
+        travelDate: document.getElementById('travelDate').value,
+        bus: { id: document.getElementById('busId').value }
+      };
+
+      fetch(${API_BASE}/reservation, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(reservation)
+      })
+      .then(res => res.json())
+      .then(data => {
+        alert('Reservation successful! ID: ' + data.id);
+      });
+    }
+  </script>
+</body>
+</html>

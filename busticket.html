@@ -1,0 +1,148 @@
+<!-- search.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bus Search</title>
+  <style>
+    *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  body{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    min-height: 70vh;
+    background: url(slide2.jpg) no-repeat;
+    background-size: cover;
+    background-position: left }
+  .wrapper{
+    width: 420px;
+    background: transparent;
+    border: 2px solid rgba(250, 247, 247, 0.2);
+    backdrop-filter: blur(9px);
+    color: #cd1818;
+    border-radius: 12px;
+    padding: 30px 40px;
+  }
+  .wrapper h1{
+    font-size: 36px;
+    text-align: center;
+  }
+  .input-box input{
+    width: 60%;
+    height: 10%;
+    background: 20px;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(244, 240, 240, 0.2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: #f24e4e;
+    padding: 40px 45px 20px 20px;
+  }
+  
+  
+
+  </style>
+</head>
+<body><div class="wrapper">
+  <h1>Search Buses</h1><br>
+  <div class="input-box">
+  <form id="searchForm"><center>
+    <label for="source">Source:</label><br><br>
+  <select id="source" required>
+    <option value="">Select Source</option>
+    <option value="AndhraPradesh">AndhraPradesh</option>
+    <option value="Aurangabad">Aurangabad</option>
+    <option value="Ahmedabad">Ahmedabad</option>
+    <option value="Bangalore">Bangalore</option>
+     <option value="Belagavi">Belagavi</option>
+     <option value="Chennai">Chennai</option>
+     <option value="Coimbatore">Coimbatore</option>
+    <option value="Delhi">Delhi</option>
+     <option value="Hyderabad">Hyderabad</option>
+     <option value="Kalaburagi">Kalaburagi</option>
+    <option value="Kolhapur">Kolhapur</option>
+    <option value="Kakinada">Kakinada</option>
+    <option value="Mumbai">Mumbai</option>
+    <option value="Nagpur">Nagpur</option>
+    <option value="Nellore">Nellore</option>
+    <option value="Ongole">Ongole</option>
+    <option value="Pune">Pune</option>
+    <option value="Rajahmundary">Rajahmundary</option>
+    <option value="Vijayawada">Vijayawada</option>
+    <option value="Visakhapatnam">Visakhapatnam</option>  </select><br>
+<br>
+
+     <label for="destination">Destination:</label><br><br>
+       <select id="destination" required>
+    <option value="">Select destination</option>
+    <option value="AndhraPradesh">AndhraPradesh</option>
+    <option value="Aurangabad">Aurangabad</option>
+    <option value="Ahmedabad">Ahmedabad</option>
+    <option value="Bangalore">Bangalore</option>
+     <option value="Belagavi">Belagavi</option>
+     <option value="Chennai">Chennai</option>
+     <option value="Coimbatore">Coimbatore</option>
+    <option value="Delhi">Delhi</option>
+     <option value="Hyderabad">Hyderabad</option>
+     <option value="Kalaburagi">Kalaburagi</option>
+    <option value="Kolhapur">Kolhapur</option>
+    <option value="Kakinada">Kakinada</option>
+    <option value="Mumbai">Mumbai</option>
+    <option value="Nagpur">Nagpur</option>
+    <option value="Nellore">Nellore</option>
+    <option value="Ongole">Ongole</option>
+    <option value="Pune">Pune</option>
+    <option value="Rajahmundary">Rajahmundary</option>
+    <option value="Vijayawada">Vijayawada</option>
+    <option value="Visakhapatnam">Visakhapatnam</option>
+   
+
+   
+    
+   
+    
+  </select><br>
+
+  <br>
+    <input type="date" id="date"required><br><br>
+    <button type="submit">Search</button>
+  </form>
+ </center>
+ </div>
+  </div>
+  <div id="busList"></div>
+
+  <script>
+    
+    const buses = [
+      { id: 1, name: "Morning Express", time: "08:00 AM", seatsAvailable: 12 },
+      { id: 2, name: "Royal Travels", time: "10:30 AM", seatsAvailable: 5 }
+    ];
+
+    document.getElementById('searchForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const resultDiv = document.getElementById('busList');
+      resultDiv.innerHTML = "<h2>Available Buses</h2>";
+      buses.forEach(bus => {
+        resultDiv.innerHTML += `
+          <div class="bus-card">
+            <strong>${bus.name}</strong><br>
+            Time: ${bus.time}<br>
+            Seats Available: ${bus.seatsAvailable}<br>
+            <button onclick="selectBus(${bus.id})">Select</button>
+          </div>
+        `;
+      });
+    });
+
+    function selectBus(busId) {
+      window.location.href = "seats.html?busId=${busId}";
+    }
+  </script>
+</body>
+</html>
